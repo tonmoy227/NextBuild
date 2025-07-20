@@ -1,0 +1,266 @@
+.nx-footer-sec {
+	z-index: 1;
+	background-color: var(--nx-title-color);
+	&:before {
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: -1;
+		content: '';
+		height: 150px;
+		position: absolute;
+		background-color: #fff;
+	}
+}
+.nx-footer-newslatter {
+	padding: 80px;
+	gap: 30px 40px;
+	background-color: var(--nx-base2);
+	@media #{$sm,$xs,$xxs} {
+		padding: 40px 30px;
+	}
+	.nx-sec-title1 {
+		max-width: 535px;
+		.subtitle,
+		.sec_title {
+			color: var(--nx-title-color);
+		}
+	}
+	.nx-ftr-form {
+		width: 100%;
+		max-width: 446px;
+		p {
+			font-weight: 700;
+			padding-bottom: 20px;
+			text-transform: uppercase;
+			color: var(--nx-title-color);
+			font-family: var(--nx-heading);
+		}
+		form {
+			gap: 8px;
+			display: flex;
+			@media #{$sm,$xs,$xxs} {
+				flex-wrap: wrap;
+			}
+		}
+		input {
+			width: 100%;
+			height: 62px;
+			border: none;
+			color: #DFDFDF;
+			max-width: 310px;
+			padding-left: 20px;
+			background-color: var(--nx-title-color);
+			&::placeholder {
+				color: #DFDFDF;
+			}
+		}
+		button {
+			color: #fff;
+			height: 62px;
+			border: none;
+			font-weight: 600;
+			padding: 15px 24px;
+			text-transform: uppercase;
+			transition: all 500ms ease-in-out;
+			background-color: var(--nx-base1);
+			&:hover {
+				color: #fff;
+				background-color: #000;
+			}
+		}
+	}
+}
+.nx-footer-content {
+	gap: 30px;
+	@media #{$lg,$md,$sm,$xs,$xxs} {
+		flex-wrap: wrap;
+	}
+}
+.nx-footer1-widget {
+	.widget-title {
+		color: #fff;
+		font-size: 22px;
+		font-weight: 600;
+		position: relative;
+		padding-bottom: 18px;
+		margin-bottom: 28px;
+		display: inline-block;
+		span {
+			position: relative;
+			&:before,
+			&:after {
+				width: 5px;
+				content: '';
+				height: 3px;
+				bottom: -18px;
+				position: absolute;
+				background-color: var(--nx-title-color);
+			}
+			&:before {
+				left: 28px;
+			}
+			&:after {
+				left: 48px;
+			}
+		}
+		&:before {
+			bottom: 0;
+			width: 72px;
+			height: 3px;
+			content: '';
+			position: absolute;
+			background-color: var(--nx-base1);
+		}
+	}
+	.logo-widget {
+		width: 100%;
+		max-width: 306px;
+		p {
+			color: #DFDFDF;
+			padding: 20px 0px 74px;
+		}
+		.top-social {
+			gap: 8px;
+			a {
+				color: #fff;
+				width: 48px;
+				height: 48px;
+				background-color: #1E2023;
+				&:hover {
+					color: #fff;
+					background-color: var(--nx-base1);
+				}
+			}
+		}
+	}
+	.menu-widget {
+		width: 100%;
+		max-width: 196px;
+		margin-left: 32px;
+		@media #{$xl} {
+			margin-left: 15px;
+		}
+		@media #{$lg,$md,$sm,$xs,$xxs} {
+			margin-left: 0;
+		}
+		li {
+			margin-bottom: 15px;
+			a {
+				color: #F2F3F5;
+				&:hover {
+					color: var(--nx-base1);
+					transform: translateX(12px);
+				}
+			}
+		}
+	}
+	.cta-widget {
+		width: 100%;
+		max-width: 270px;
+		margin-left: 32px;
+		@media #{$lg,$md,$sm,$xs,$xxs} {
+			margin-left: 0;
+		}
+		p {
+			opacity: .8;
+			color: #F2F3F5;	
+		}
+		b {
+			color: #fff;
+			display: block;
+			font-size: 24px;
+			font-weight: 600;
+			padding: 30px 0px 20px;
+		}
+		.cta_title {
+			opacity: .8;
+			color: #F2F3F5;
+		}
+		a {
+			color: #F2F3F5;
+		}
+	}
+	.gallery-widget {
+		width: 100%;
+		max-width: 196px;
+		ul {
+			gap: 16px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		li {
+			width: 88px;
+			height: 90px;
+			a {
+				position: relative;
+				&:before {
+					top: 0;
+					left: 0;
+					opacity: .7;
+					width: 100%;
+					height: 100%;
+					content: '';
+					position: absolute;
+					transform: scale(0);
+					transition: all 500ms ease-in-out;
+					background-color: var(--nx-base1);
+				}
+				&:after {
+					left: 0;
+					top: 0%;
+					right: 0;
+					color: #fff;
+					width: 100%;
+					opacity: 0;
+					height: 100%;
+					display: flex;
+					font-size: 24px;
+					content: '\f065';
+					font-weight: 900;
+					position: absolute;
+					align-items: center;
+					justify-content: center;
+					transform: translateY(-50%);
+					transition: all 500ms ease-in-out;
+					font-family: 'Font Awesome 6 Free';
+				}
+			}
+			@media #{$xl} {
+				width: 75px;
+				height: 75px;
+			}
+			a {
+				width: 100%;
+				height: 100%;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			&:hover {
+				a {
+					&:after {
+						top: 50%;
+						opacity: 1;
+						transition-delay: 200ms;
+					}
+					&:before {
+						transform: scale(1.0);
+					}
+				}
+			}	
+		}
+	}
+}
+.nx-copyright {
+	padding: 30px 0px;
+	border-top: 1px solid #2E3033;
+	p {
+		color: #fff;
+		a {
+			color: var(--nx-base1);
+		}
+	}
+}

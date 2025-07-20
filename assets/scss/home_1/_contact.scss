@@ -1,0 +1,120 @@
+.nx-contact-sec {
+	z-index: 1;
+	&:before {
+		right: 0;
+		bottom: 0;
+		content: '';
+		width: 728px;
+		height: 545px;
+		position: absolute;
+		background-color: var(--nx-base1);
+		clip-path: polygon( 79.121% 0%,100% 0%,100% 100%,0% 100%,79.121% 0% );
+		@media #{$md,$sm,$xs,$xxs} {
+			display: none;
+		}
+	}
+	.nx-contact-bg {
+		top: 0;
+		left: 0;
+		z-index: -1;
+		width: 75%;
+		height: 100%;
+	}
+	.nx-con-shape1 {
+		right: 0;
+		bottom: -40px;
+		position: absolute;
+	}
+	.nx-con-img1 {
+		bottom: 0;
+		right: 16%;
+		@media #{$md,$sm,$xs,$xxs} {
+			display: none;
+		}
+	}
+}
+.nx-contact-content {
+	z-index: 1;
+	width: 100%;
+	max-width: 746px;
+	position: relative;
+	@media #{$md,$sm,$xs,$xxs} {
+		max-width: 100%;
+	}
+	.nx-tm1-shape1 {
+		top: 5%;
+		left: -7%;
+		z-index: -1;
+		position: absolute;
+		span {
+			opacity: .1;
+			width: 520px;
+			height: 150px;
+			position: absolute;
+			transform: rotate(-150deg);
+			background: linear-gradient(230deg, #FFB703 13.74%, rgba(255, 183, 3, 0) 85.65%);
+		}
+	}
+}
+.nx-contact-form {
+	padding: 48px;
+	background-color: #fff;
+	box-shadow: 0px 4px 40px 0px #8181811A;
+	label {
+		display: block;
+		font-weight: 600;
+		color: var(--nx-title-color);
+		span {
+			color: var(--nx-base1);
+		}
+	}
+	input,textarea {
+		width: 100%;
+		height: 40px;
+		border: none;
+		margin-bottom: 35px;
+		border-bottom: 1px solid #F2F3F5;
+		transition: all 500ms ease-in-out;
+		&::placeholder {
+			color: #2E3033;
+			font-size: 16px;
+		}
+		&:focus {
+			border-bottom: 1px solid var(--nx-base1);
+		}
+	}
+	textarea {
+		height: 120px;
+		padding-top: 15px;
+	}
+	button {
+		gap: 16px;
+		color: #fff;
+		border: none;
+		display: flex;
+		font-size: 16px;
+		font-weight: 600;
+		white-space: nowrap;
+		align-items: center;
+		text-transform: uppercase;
+		padding: 8px 8px 8px 20px;
+		background-color: var(--nx-base1);
+		transition: all 500ms ease-in-out;
+		&:hover {
+			color: #000;
+			background-color: var(--nx-base2);
+		}
+		i {
+			width: 32px;
+			height: 32px;
+			display: flex;
+			align-items: center;
+			background-color: #fff;
+			justify-content: center;
+			@media #{$xxs} {
+				width: 28px;
+				height: 28px;
+			}
+		}
+	}
+}

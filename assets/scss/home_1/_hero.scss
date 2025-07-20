@@ -1,3 +1,22 @@
+@keyframes zoomIn {
+	0% {
+		transform: scale(1) translate(0, 0);
+	}
+	100% {
+		transform: scale(1.2) translate(-10px, -10px);
+	}
+}
+@keyframes bounceDown {
+	0%, 20%, 50%, 80%, 100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(10px);
+	}
+	60% {
+		transform: translateY(5px);
+	}
+}
 .nx-hero1-sec {
 	z-index: 1;
 	.nx-hr1-bg {
@@ -69,6 +88,9 @@
 			align-items: center;
 			background-color: #fff;
 			justify-content: center;
+			img {
+				animation: bounceDown 1.5s infinite;
+			}
 		}
 	}
 }
@@ -132,14 +154,16 @@
 	}
 }
 .nx-hero1-img {
+	clip-path: polygon( 0% 33.9%,49.074% 0%,100% 0%,100% 100%,0% 100%,0% 33.9% );
+	@media #{$md,$sm,$xs,$xxs} {
+		clip-path: none;
+	}
 	.item-img {
-		clip-path: polygon( 0% 33.9%,49.074% 0%,100% 0%,100% 100%,0% 100%,0% 33.9% );
-		@media #{$md,$sm,$xs,$xxs} {
-			clip-path: none;
-		}
+		animation: zoomIn 10s ease-in-out infinite;
 		&:before {
 			top: 0;
 			left: 0;
+			z-index: 1;
 			width: 100%;
 			content: '';
 			height: 100%;
