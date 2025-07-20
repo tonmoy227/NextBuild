@@ -2,6 +2,12 @@
 	margin: 0 auto;
 	max-width: 416px;
 	margin-bottom: 30px;
+	.item-img {
+		overflow: hidden;
+		img {
+			transition: all 500ms ease-in-out;
+		}
+	}
 	.item-tag {
 		a {
 			left: 0;
@@ -88,6 +94,13 @@
 				i {
 					background-color: #000;
 				}
+			}
+		}
+	}
+	&:hover {
+		.item-img {
+			img {
+				transform: scale(1.05);
 			}
 		}
 	}

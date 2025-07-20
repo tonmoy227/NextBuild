@@ -3930,6 +3930,13 @@ a:hover, a:focus {
   max-width: 416px;
   margin-bottom: 30px;
 }
+.nx-blog1-item .item-img {
+  overflow: hidden;
+}
+.nx-blog1-item .item-img img {
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
 .nx-blog1-item .item-tag a {
   left: 0;
   bottom: 0;
@@ -4033,6 +4040,10 @@ a:hover, a:focus {
 }
 .nx-blog1-item .item-text .read_more:hover i {
   background-color: #000;
+}
+.nx-blog1-item:hover .item-img img {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 /*---------------------------------------------------- */

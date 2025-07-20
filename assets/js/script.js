@@ -181,6 +181,10 @@ Last change:    00/00/00
 			});
 		});
 	}
+	$('.counter').counterUp({
+		delay: 20,
+		time: 5000
+	});
 	ScrollTrigger.addEventListener("refresh", () => SplitText.revertAll());
 	// windows-loaded-before-functions
 	document.addEventListener("DOMContentLoaded", function () {
