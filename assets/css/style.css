@@ -352,6 +352,19 @@ Font load
     display: none !important;
   }
 }
+.nx-header-section:is(.header_style_one):is(.ver_2) .nx-header-top-area {
+  background-color: #000;
+}
+.nx-header-section:is(.header_style_one):is(.ver_2) .nx-header-top-area .nx-header-top .top-social a {
+  color: #fff;
+  background-color: #171719;
+}
+.nx-header-section:is(.header_style_one):is(.ver_2) .nx-header-top-area .nx-header-top .top-social a:hover {
+  background-color: var(--nx-base1);
+}
+.nx-header-section:is(.header_style_one):is(.ver_2) .nx-header-navigation-area {
+  background-color: #fff;
+}
 .nx-header-section:is(.txa_sticky_header) {
   position: fixed;
   width: 100%;

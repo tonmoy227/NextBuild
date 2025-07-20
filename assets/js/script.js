@@ -268,13 +268,13 @@ Last change:    00/00/00
 				});
 				const NXH1 = gsap.timeline();
 				NXH1
-				.from(".nx-hero1-img", { yPercent: 100, duration: 1.5, transformOrigin: "bottom",  ease: "power1.out" })
-				.from(".nx-hero1-sec .nx-hr1-bg", { scale: 2, duration: 4, transformOrigin: "bottom",  ease: "power1.out" })
+				.from(".nx-hero1-img", { yPercent: 100, duration: .8, transformOrigin: "bottom",  ease: "power1.out" })
+				.from(".nx-hero1-sec .nx-hr1-bg", { scale: 2, duration: 2, transformOrigin: "bottom",  ease: "power1.out" })
 				.from(".nx-hero1-text .hr-btn-grp .nx-btn1:nth-child(1)", { opacity: 0,  yPercent: 100, duration: 2, transformOrigin: "bottom",  ease: "elastic.out(1,0.7)" },"<=.5")
 				.from(".nx-hero1-text .hr-btn-grp .nx-btn1:nth-child(2)", { opacity: 0,  yPercent: 100, duration: 2, transformOrigin: "bottom",  ease: "elastic.out(1,0.7)" },"<=.5")
-				.from(".nx-hero1-line-shape", { opacity: 0,  yPercent: -100, duration: 3, transformOrigin: "top",  ease: "elastic.out(1,0.7)" },"<=.2")
+				.from(".nx-hero1-line-shape", { opacity: 0,  yPercent: -100, duration: 4, transformOrigin: "top",  ease: "elastic.out(1,0.7)" },"<= -1")
 				.from(".nx-hero1-line-shape .nx-line-circle", { opacity: 0, rotate: "360deg",  yPercent: -200, duration: 2.5, transformOrigin: "center",  ease: "bounce.out" },"<=.8")
-				.from(".nx-hero1-img2", { opacity: 1,   yPercent: 100, duration: 1, transformOrigin: "center",  ease: "power1.out" },"<=.5")
+				.from(".nx-hero1-img2", { opacity: 1,   yPercent: 100, duration: .8, transformOrigin: "center",  ease: "power1.out" },"<= -1")
 				.from(".nx-hero1-sec .nx-hr1-shape2", { opacity: 1,   xPercent: -100, duration: 1, transformOrigin: "center",  ease: "power1.out" },"<=.5")
 				
 			}, 700);

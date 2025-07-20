@@ -277,6 +277,25 @@
 				}
 			}
 		}
+		&:is(.ver_2) {
+			.nx-header-top-area {
+				background-color: #000;
+				.nx-header-top {
+					.top-social {
+						a {
+							color: #fff;
+							background-color: #171719;
+							&:hover {
+								background-color: var(--nx-base1);
+							}
+						}
+					}
+				}
+			}
+			.nx-header-navigation-area {
+				background-color: #fff;
+			}
+		}
 	}
 	&:is(.txa_sticky_header) {
 		position: fixed;
