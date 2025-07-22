@@ -185,7 +185,8 @@ Last change:    00/00/00
 		delay: 20,
 		time: 5000
 	});
-	ScrollTrigger.addEventListener("refresh", () => SplitText.revertAll());
+
+
 	// windows-loaded-before-functions
 	document.addEventListener("DOMContentLoaded", function () {
 		window.addEventListener('load', function(){
@@ -646,5 +647,51 @@ Last change:    00/00/00
 				return element.find('img');
 			}
 		}
+	});
+
+	var swiper2 = new Swiper(".nx-hero2-slider", {
+		loop: true,
+		spaceBetween: 0,
+		speed: 1000,
+		slidesPerView: 1,
+		effect: "fade",
+		pagination: {
+			el: ".nx-hr2-pagi",
+			clickable: true,
+		},
+		navigation: {
+			prevEl: ".nx-hr2-prev",
+			nextEl: ".nx-hr2-next",
+		},
+		thumbs: {
+			swiper: quick_view,
+		},
+	});
+	var quick_view = new Swiper(".nx-hero2-thumb-slider", {
+		loop: true,
+		spaceBetween: 0,
+		slidesPerView: 3,
+		speed: 1000,
+		centeredSlides: true,
+		pagination: {
+			el: ".nx-hr2-pagi",
+			clickable: true,
+		},
+		navigation: {
+			prevEl: ".nx-hr2-prev",
+			nextEl: ".nx-hr2-next",
+		},
+
+		breakpoints: {  
+			'1400': {
+				slidesPerView: 3,
+			},
+			'1200': {
+				slidesPerView: 3,
+			},
+			'1024': {
+				slidesPerView: 3,
+			},
+		},
 	});
 })(jQuery);

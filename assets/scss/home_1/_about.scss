@@ -171,7 +171,14 @@
 		padding-top: 0;
 	}
 }
-
+.nx-ab1-ft-wrap {
+	&:is(.ver_2) {
+		gap: 30px;
+		@media #{$sm,$xs,$xxs} {
+			flex-wrap: wrap;
+		}
+	}
+}
 .nx-ab1-ft-item {
 	gap: 16px 24px;
 	margin-bottom: 20px;
@@ -205,6 +212,32 @@
 	&:hover {
 		.item-icon {
 			animation: jello 1.5s infinite;
+		}
+	}
+	&:is(.ver_2) {
+		width: 100%;
+		border: none;
+		max-width: 225px;
+		&:last-child {
+			border: none;
+			margin-bottom: 20px;
+			padding-bottom: 20px;
+		}
+		.item-icon {
+			width: 72px;
+			height: 72px;
+			margin-bottom: 4px;
+			background-color: #F2F3F5;
+		}
+		.item-text {
+			max-width: 100%;
+			h3 {
+				font-size: 20px;
+				padding-bottom: 6px;
+			}
+			p {
+				font-size: 16px;
+			}
 		}
 	}
 }
