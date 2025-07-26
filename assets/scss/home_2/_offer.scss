@@ -1,18 +1,74 @@
 .nx-offer-sec {
+	z-index: 1;
 	background-color: #F9FAFA;
+	.nx-offer-shape {
+		left: 0;
+		bottom: 0;
+		z-index: -1;
+	}
+}
+.nx-offer-content {
+	justify-content: space-between;
+	@media #{$xl,$lg,$md,$sm,$xs,$xxs} {
+		gap: 40px;
+	}
+	@media #{$lg,$md,$sm,$xs,$xxs} {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }
 .nx-offer-text {
 	max-width: 636px;
 }
+.nx-offer-img {
+	left: 28%;
+	bottom: 0;
+	position: absolute;
+	@media #{$xl,$lg,$md,$sm,$xs,$xxs} {
+		left: 15%;
+	}
+	@media #{$lg,$md,$sm,$xs,$xxs} {
+		display: none;
+	}
+}
 .nx-offer-list-wrap {
 	width: 100%;
 	max-width: 602px;
+	position: relative;
+	&:before {
+		top: 0;
+		left: 2px;
+		width: 2px;
+		height: 100%;
+		content: '';
+		position: absolute;
+		background-color: rgba(46, 48, 51, .1);
+		@media #{$xl,$lg,$md,$sm,$xs,$xxs} {
+			display: none;
+		}
+	}
 }
 .nx-offer-list-item {
 	width: 100%;
-	padding: 38px 0px;
+	padding: 34px 0px;
 	margin-left: 76px;
+	position: relative;
+	padding-left: 4px;
 	border-top: 1px solid rgba(46, 48, 51, .1);
+	transition: all 500ms ease-in-out;
+	@media #{$xl,$lg,$md,$sm,$xs,$xxs} {
+		margin-left: 0;
+	}
+	&:before {
+		top: 0;
+		width: 6px;
+		left: -76px;
+		height: 0%;
+		content: '';
+		position: absolute;
+		transition: all 500ms ease-in-out;
+		background-color: var(--nx-base1);
+	}
 	.nx-offer-front {
 		gap: 0px 58px;
 		transition: all 500ms ease-in-out;
@@ -38,9 +94,10 @@
 		position: absolute;
 		transform-origin: 50% 0%;
 		transition: all 500ms ease-in-out;
-		// transform: perspective(500px) rotatex(-90deg);
+		transform: perspective(500px) rotatex(-90deg);
 		.item-icon {
 			top: 50%;
+			z-index: 1;
 			left: -25px;
 			position: absolute;
 			transform: translateY(-50%);
@@ -75,17 +132,25 @@
 		}
 		.item-text {
 			color: #fff;
+			overflow: hidden;
 			font-size: 40px;
 			font-weight: 700;
 			font-family: var(--nx-heading);
+			a {
+				margin: 0px 10px;
+			}
 		}
 	}
 	&:hover {
+		border-top: 1px solid transparent;
 		.nx-offer-front {
 			opacity: 0;
 		}
 		.item-hover {
 			transform: rotateY(0deg);
+		}
+		&:before {
+			height: 100%;
 		}
 	}
 }

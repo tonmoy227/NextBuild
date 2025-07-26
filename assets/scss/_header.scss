@@ -183,6 +183,7 @@
 		}
 	}
 	&:is(.header_style_one) {
+		background-color: #fff;
 		.nx-header-top-area {
 			border-bottom: 1px solid #EBEBEB
 		}
@@ -247,6 +248,9 @@
 				padding-left: 20px;
 				border: 1px solid #F2F3F5;
 				transition: all 500ms ease-in-out;
+				&::placeholder {
+					font-size: 16px;
+				}
 				&:focus {
 					border: 1px solid var(--nx-base1);
 				}

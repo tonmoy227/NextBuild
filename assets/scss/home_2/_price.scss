@@ -1,0 +1,123 @@
+.nx-price2-sec {
+	z-index: 1;
+	background-color: #F9FAFA;
+	.nx-sec-title1 {
+		.sec_title {
+			margin: 0 auto;
+			max-width: 800px;
+		}
+		p {
+			margin: 0 auto;
+			max-width: 600px;
+		} 
+	}
+	.nx-price-bg {
+		top: 0;
+		left: 0;
+		z-index: -1;
+		position: absolute;
+	}
+}
+.nx-price2-item {
+	padding: 40px;
+	margin: 0 auto;
+	max-width: 636px;
+	border-radius: 24px;
+	margin-bottom: 30px;
+	background-color: #fff;
+	@media #{$lg,$md,$sm,$xs,$xxs} {
+		padding: 30px 20px;
+	}
+	.item-title {
+		h2 {
+			font-size: 24px;
+			font-weight: 600;
+			padding-bottom: 10px;
+		}
+		p {
+			max-width: 290px;
+		}
+	}
+	.item-price {
+		gap: 10px 30px;
+		flex-wrap: wrap;
+		h3 {
+			font-size: 46px;
+			font-weight: 700;
+			span {
+				font-size: 18px;
+				font-weight: 500;
+				color: #2E3033CC;
+				font-weight: normal;
+			}
+		}
+		a {
+			gap: 16px;
+			font-size: 16px;
+			font-weight: 600;
+			border-radius: 35px;
+			color: var(--nx-base1);
+			padding: 7px 8px 7px 20px;
+			border: 1px solid var(--nx-base1);
+			i {
+				width: 32px;
+				height: 32px;
+				display: flex;
+				border-radius: 100%;
+				align-items: center;
+				justify-content: center;
+				background-color: var(--nx-base1);
+				transition: all 500ms ease-in-out;
+				svg {
+					path {
+						fill: #fff;
+						transition: all 500ms ease-in-out;
+					}
+				}
+			}
+			&:hover {
+				color: #fff;
+				background-color: var(--nx-base1);
+				i {
+					background-color: #fff;	
+					svg {
+						path {
+							fill: var(--nx-base1);
+						}
+					}
+				}
+			}
+		}
+	}
+	.item-list {
+		gap: 0px 30px;
+		@media #{$sm,$xs,$xxs} {
+			flex-wrap: wrap;
+		}
+		li {
+			padding-left: 28px;
+			margin-bottom: 15px;
+			position: relative;
+			&:before,
+			&:after {
+				content: '';
+				position: absolute;
+				border-radius: 100%;
+			}
+			&:before {
+				top: 4px;
+				left: 0;
+				width: 16px;
+				height: 16px;
+				border: 1px solid var(--nx-base1);
+			}
+			&:after {
+				top: 9px;
+				left: 5px;
+				width: 6px;
+				height: 6px;
+				background-color: var(--nx-base1);
+			}
+		}
+	}
+}

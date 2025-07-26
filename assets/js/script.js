@@ -192,7 +192,37 @@ Last change:    00/00/00
 		window.addEventListener('load', function(){
 
 			
-
+			gsap.utils.toArray(".nx-text p").forEach(paragraph => {
+				let timeline = gsap.timeline({
+					scrollTrigger: {
+						trigger: paragraph,
+						start: "top 90%",
+						end: "bottom 60%",
+						toggleActions: "play none none none"
+					}
+				});
+				let splitText = new SplitText(paragraph, { type: "lines" });
+				gsap.set(paragraph, { perspective: 400 });
+				timeline.from(splitText.lines, {
+					opacity: 0,
+					rotationX: -80,
+					transformOrigin: "top center -50",
+					force3D: true,
+					duration: 1,
+					delay: 0.5,
+					stagger: 0.1
+				});
+			});
+			
+			if($('.nx-hr2-text').length) {
+				var txtSplit = $('.nx-hr2-text');
+				if(txtSplit.length == 0) return; gsap.registerPlugin(SplitText); txtSplit.each(function(index, el) {
+					el.split = new SplitText(el, { 
+						type: "words",
+						wordsClass: "split-word"
+					});
+				});
+			}
 			let preloader = document.querySelector("#preloader");
 			if (preloader) {
 				preloader.classList.add("preloaded");
@@ -246,27 +276,7 @@ Last change:    00/00/00
 						});
 					});
 				}
-				gsap.utils.toArray(".nx-text p").forEach(paragraph => {
-					let timeline = gsap.timeline({
-						scrollTrigger: {
-							trigger: paragraph,
-							start: "top 90%",
-							end: "bottom 60%",
-							toggleActions: "play none none none"
-						}
-					});
-					let splitText = new SplitText(paragraph, { type: "lines" });
-					gsap.set(paragraph, { perspective: 400 });
-					timeline.from(splitText.lines, {
-						opacity: 0,
-						rotationX: -80,
-						transformOrigin: "top center -50",
-						force3D: true,
-						duration: 1,
-						delay: 0.5,
-						stagger: 0.1
-					});
-				});
+
 				const NXH1 = gsap.timeline();
 				NXH1
 				.from(".nx-hero1-img", { yPercent: 100, duration: .8, transformOrigin: "bottom",  ease: "power1.out" })
@@ -277,421 +287,565 @@ Last change:    00/00/00
 				.from(".nx-hero1-line-shape .nx-line-circle", { opacity: 0, rotate: "360deg",  yPercent: -200, duration: 2.5, transformOrigin: "center",  ease: "bounce.out" },"<=.8")
 				.from(".nx-hero1-img2", { opacity: 1,   yPercent: 100, duration: .8, transformOrigin: "center",  ease: "power1.out" },"<= -1")
 				.from(".nx-hero1-sec .nx-hr1-shape2", { opacity: 1,   xPercent: -100, duration: 1, transformOrigin: "center",  ease: "power1.out" },"<=.5")
-				
+
+				var swiper2 = new Swiper(".nx-hero2-slider", {
+					loop: true,
+					spaceBetween: 0,
+					speed: 1000,
+					slidesPerView: 1,
+					effect: "fade",
+					pagination: {
+						el: ".nx-hr2-pagi",
+						clickable: true,
+					},
+					navigation: {
+						prevEl: ".nx-hr2-prev",
+						nextEl: ".nx-hr2-next",
+					},
+					thumbs: {
+						swiper: quick_view,
+					},
+				});
+				var quick_view = new Swiper(".nx-hero2-thumb-slider", {
+					loop: true,
+					spaceBetween: 0,
+					slidesPerView: 3,
+					speed: 1000,
+					centeredSlides: true,
+					pagination: {
+						el: ".nx-hr2-pagi",
+						clickable: true,
+					},
+					navigation: {
+						prevEl: ".nx-hr2-prev",
+						nextEl: ".nx-hr2-next",
+					},
+
+					breakpoints: {  
+						'1400': {
+							slidesPerView: 3,
+						},
+						'1200': {
+							slidesPerView: 3,
+						},
+						'1024': {
+							slidesPerView: 3,
+						},
+					},
+				});
 			}, 700);
 		})		
-	});
-	
-	if (window.matchMedia("(min-width: 1200px)").matches) {
-		const ServiceCardItem = gsap.utils.toArray(".nx-hw-item");
-		const animateCard = (card, wrapper, index) => {
-			gsap.to(card, {
-				transformOrigin: "top center",
-				duration: 2,
-				scrub: 1.5,
-				ease: "power1.out",
-				scrollTrigger: {
-					trigger: wrapper,
-					start: `top ${140 + 135 * index}`, 
-					end: "bottom 100%",
-					endTrigger: ".nx-how-work-content",
-					pin: wrapper,
-					pinSpacing: false,
-					markers: false,
-				},
-			});
-		};
-		ServiceCardItem.forEach((wrapper, index) => animateCard([index], wrapper, index));
-	}
-	if (window.matchMedia("(min-width: 1200px)").matches) { 
-		var Testi_pin = document.querySelectorAll(".nx-how-work-text")
-		Testi_pin.forEach((item) => {
-			gsap.to(item, {
-				scrollTrigger: {
-					trigger: item,
-					markers: false,
-					pin: true,
-					pinSpacing: false,
-					start: "top 20%",
-					end: "bottom 100%",
-				},
-			});
-		});
-	}
-	if ($('.nx-project-area').length > 0 ) {
-		var $grid = $('.nx-project-area').imagesLoaded( function() {
-			$grid.masonry({
-				percentPosition: true,
-				itemSelector: '.grid-item',
-				columnWidth: '.grid-sizer'
-			}); 
-		});
-	}
-	if ($('.nx-spon1-slider').length > 0 ) {
-		var slider = new Swiper('.nx-spon1-slider', {
-			spaceBetween: 100,
-			slidesPerView: 5,
-			loop: true,
-			autoplay: {
-				enabled: true,
-				delay: 6000
-			},
-			speed: 400,
-			breakpoints: {
-				'1600': {
-					slidesPerView: 5,
-				},
-				'1200': {
-					slidesPerView: 5,
-					spaceBetween: 40,
-				},
-				'992': {
-					slidesPerView: 4,
-					spaceBetween: 20,
-				},
-				'768': {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				'576': {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				'480': {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				'0': {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
+});
+
+if (window.matchMedia("(min-width: 1200px)").matches) {
+	const ServiceCardItem = gsap.utils.toArray(".nx-hw-item");
+	const animateCard = (card, wrapper, index) => {
+		gsap.to(card, {
+			transformOrigin: "top center",
+			duration: 2,
+			scrub: 1.5,
+			ease: "power1.out",
+			scrollTrigger: {
+				trigger: wrapper,
+				start: `top ${140 + 135 * index}`, 
+				end: "bottom 100%",
+				endTrigger: ".nx-how-work-content",
+				pin: wrapper,
+				pinSpacing: false,
+				markers: false,
 			},
 		});
 	};
-	if ($('.nx-testi1-slider').length > 0 ) {
-		var slider = new Swiper('.nx-testi1-slider', {
-			spaceBetween: 24,
-			slidesPerView: 3,
-			loop: true,
-			autoplay: {
-				enabled: true,
-				delay: 6000
-			},
-			speed: 400,
-			breakpoints: {
-				'1600': {
-					slidesPerView: 3,
-				},
-				'1300': {
-					slidesPerView: 3,
-				},
-				'1200': {
-					slidesPerView: 2,
-					spaceBetween: 24,
-				},
-				'992': {
-					slidesPerView: 2,
-					spaceBetween: 24,
-				},
-				'992': {
-					slidesPerView: 2,
-					spaceBetween: 24,
-				},
-				'768': {
-					slidesPerView: 2,
-					spaceBetween: 24,
-				},
-				'576': {
-					slidesPerView: 1,
-					spaceBetween: 24,
-				},
-				'480': {
-					slidesPerView: 1,
-					spaceBetween: 24,
-				},
-				'0': {
-					slidesPerView: 1,
-					spaceBetween: 24,
-				},
+	ServiceCardItem.forEach((wrapper, index) => animateCard([index], wrapper, index));
+}
+if (window.matchMedia("(min-width: 1200px)").matches) { 
+	var Testi_pin = document.querySelectorAll(".nx-how-work-text")
+	Testi_pin.forEach((item) => {
+		gsap.to(item, {
+			scrollTrigger: {
+				trigger: item,
+				markers: false,
+				pin: true,
+				pinSpacing: false,
+				start: "top 20%",
+				end: "bottom 100%",
 			},
 		});
-	};
-	if($('.nx-sub-tilte').length) {
-		var agtsub = $(".nx-sub-tilte");
-
-		if(agtsub.length == 0) return; gsap.registerPlugin(SplitText); agtsub.each(function(index, el) {
-			
-			el.split = new SplitText(el, { 
-				type: "lines,words,chars",
-				linesClass: "split-line"
-			});
-			
-			if( $(el).hasClass('nx-sub-anim') ){
-				gsap.set(el.split.chars, {
-					opacity: 0,
-					x: "7",
-				});
-			}
-			
-			el.anim = gsap.to(el.split.chars, {
-				scrollTrigger: {
-					trigger: el,
-					start: "top 90%",
-					end: "top 60%",
-					markers: false,
-					scrub: 1,
-				},
-
-				x: "0",
-				y: "0",
-				opacity: 1,
-				duration: .7,
-				stagger: 0.2,
-			});
-			
-		});
-	}
-	if($('.nx-itm-title').length) {
-		var txtheading = $(".nx-itm-title");
-
-		if(txtheading.length == 0) return; gsap.registerPlugin(SplitText); txtheading.each(function(index, el) {
-
-			el.split = new SplitText(el, { 
-				type: "lines,words,chars",
-				linesClass: "split-line"
-			});
-
-			if( $(el).hasClass('nx-itm-anim') ){
-				gsap.set(el.split.chars, {
-					opacity: .3,
-					x: "-7",
-				});
-			}
-			el.anim = gsap.to(el.split.chars, {
-				scrollTrigger: {
-					trigger: el,
-					start: "top 92%",
-					end: "top 60%",
-					markers: false,
-					scrub: 1,
-				},
-
-				x: "0",
-				y: "0",
-				opacity: 1,
-				duration: .7,
-				stagger: 0.2,
-			});
-
-		});
-	}
-
-	gsap.utils.toArray(' .left_view').forEach((el, index) => { 
-		let tlcta = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1.5,
-				start: "top 70%",
-				end: "top -5%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tlcta
-		.set(el, {transformOrigin: 'center center'})
-		.from(el, { opacity: 0, scale: 1, x: "-300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
-	});	
-	gsap.utils.toArray(' .right_view').forEach((el, index) => { 
-		let tlcta = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1.5,
-				start: "top 70%",
-				end: "top -5%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tlcta
-		.set(el, {transformOrigin: 'center center'})
-		.from(el, { opacity: 0, scale: 1, xPercent: 100}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
 	});
-	gsap.utils.toArray(' .top_view').forEach((el, index) => { 
-		let tlcta = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1.5,
-				start: "top 95%",
-				end: "top 100%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tlcta
-		.set(el, {transformOrigin: 'center center'})
-		.from(el, { opacity: 0, scale: 1, y: "50"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+}
+if ($('.nx-project-area').length > 0 ) {
+	var $grid = $('.nx-project-area').imagesLoaded( function() {
+		$grid.masonry({
+			percentPosition: true,
+			itemSelector: '.grid-item',
+			columnWidth: '.grid-sizer'
+		}); 
 	});
-	gsap.utils.toArray(' .top_view_2').forEach((el, index) => { 
-		let tlcta = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1.5,
-				start: "top 150%",
-				end: "top 100%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tlcta
-		.set(el, {transformOrigin: 'center center'})
-		.from(el, { opacity: 0, scale: 1, yPercent: "200"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
-	});
-	gsap.utils.toArray(' .cnt_img_anim').forEach((el, index) => { 
-		let tlcta = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1.5,
-				start: "top 110%",
-				end: "top 100%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tlcta
-		.set(el, {transformOrigin: 'center center'})
-		.from(el, { opacity: 0, scale: 1, yPercent: "100"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
-	});
-	var NXABOUT = gsap.timeline({
-		scrollTrigger: {
-			trigger: '.nx-ab1-content',
-			start: "top 60%",
-			toggleActions: 'play none none reverse',
-			markers: false,
-		}
-
-	});
-	NXABOUT
-	.from(".ab-line-shape1 span:nth-child(1)", { opacity: 0,  yPercent: -200, duration: 2,   ease: "power1.out" })
-	.from(".ab-line-shape1 span:nth-child(2)", { opacity: 0,  yPercent: -200, duration: 2,   ease: "power1.out" },"<=.5")
-	
-	gsap.utils.toArray('.nx-count-item1 ').forEach((el, index) => {
-		let tl1 = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1,
-				start: "top 90%",
-				end: "buttom 50%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tl1
-		.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "top" })
-		.from(el , { scaleY: .2, rotateX: "15deg", opacity: 0})
-	})
-
-
-	gsap.utils.toArray('.nx-count-item2 ').forEach((el, index) => {
-		let tl1 = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1,
-				start: "top 90%",
-				end: "buttom 50%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tl1
-		.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "100% 50%" })
-		.from(el , { scaleX: .2  , opacity: 0})
-	})
-	gsap.utils.toArray('.nx-count-item3 ').forEach((el, index) => {
-		let tl1 = gsap.timeline({
-			scrollTrigger: {
-				trigger: el,
-				scrub: 1,
-				start: "top 90%",
-				end: "buttom 50%",
-				toggleActions: "play none none reverse",
-				markers: false
-			}
-		})
-
-		tl1
-		.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "left" })
-		.from(el , { scaleX: .2  , opacity: 0})
-	})
-
-	$('.zoom-gallery').magnificPopup({
-		delegate: 'a',
-		type: 'image',
-		closeOnContentClick: false,
-		preloader: true,
-		closeBtnInside: false,
-		mainClass: 'mfp-with-zoom',
-		gallery: {
-			enabled: true
+}
+if ($('.nx-spon1-slider').length > 0 ) {
+	var slider = new Swiper('.nx-spon1-slider', {
+		spaceBetween: 100,
+		slidesPerView: 5,
+		loop: true,
+		autoplay: {
+			enabled: true,
+			delay: 6000
 		},
-		zoom: {
-			enabled: false,
-			duration: 300, 
-			opener: function(element) {
-				return element.find('img');
-			}
-		}
+		speed: 400,
+		breakpoints: {
+			'1600': {
+				slidesPerView: 5,
+			},
+			'1200': {
+				slidesPerView: 5,
+				spaceBetween: 40,
+			},
+			'992': {
+				slidesPerView: 4,
+				spaceBetween: 20,
+			},
+			'768': {
+				slidesPerView: 3,
+				spaceBetween: 20,
+			},
+			'576': {
+				slidesPerView: 3,
+				spaceBetween: 20,
+			},
+			'480': {
+				slidesPerView: 2,
+				spaceBetween: 20,
+			},
+			'0': {
+				slidesPerView: 2,
+				spaceBetween: 20,
+			},
+		},
 	});
+};
+if ($('.nx-testi1-slider').length > 0 ) {
+	var slider = new Swiper('.nx-testi1-slider', {
+		spaceBetween: 24,
+		slidesPerView: 3,
+		loop: true,
+		autoplay: {
+			enabled: true,
+			delay: 6000
+		},
+		speed: 400,
+		breakpoints: {
+			'1600': {
+				slidesPerView: 3,
+			},
+			'1300': {
+				slidesPerView: 3,
+			},
+			'1200': {
+				slidesPerView: 2,
+				spaceBetween: 24,
+			},
+			'992': {
+				slidesPerView: 2,
+				spaceBetween: 24,
+			},
+			'992': {
+				slidesPerView: 2,
+				spaceBetween: 24,
+			},
+			'768': {
+				slidesPerView: 2,
+				spaceBetween: 24,
+			},
+			'576': {
+				slidesPerView: 1,
+				spaceBetween: 24,
+			},
+			'480': {
+				slidesPerView: 1,
+				spaceBetween: 24,
+			},
+			'0': {
+				slidesPerView: 1,
+				spaceBetween: 24,
+			},
+		},
+	});
+};
+if($('.nx-sub-tilte').length) {
+	var agtsub = $(".nx-sub-tilte");
 
-	var swiper2 = new Swiper(".nx-hero2-slider", {
+	if(agtsub.length == 0) return; gsap.registerPlugin(SplitText); agtsub.each(function(index, el) {
+
+		el.split = new SplitText(el, { 
+			type: "lines,words,chars",
+			linesClass: "split-line"
+		});
+
+		if( $(el).hasClass('nx-sub-anim') ){
+			gsap.set(el.split.chars, {
+				opacity: 0,
+				x: "7",
+			});
+		}
+
+		el.anim = gsap.to(el.split.chars, {
+			scrollTrigger: {
+				trigger: el,
+				start: "top 90%",
+				end: "top 60%",
+				markers: false,
+				scrub: 1,
+			},
+
+			x: "0",
+			y: "0",
+			opacity: 1,
+			duration: .7,
+			stagger: 0.2,
+		});
+
+	});
+}
+if($('.nx-itm-title').length) {
+	var txtheading = $(".nx-itm-title");
+
+	if(txtheading.length == 0) return; gsap.registerPlugin(SplitText); txtheading.each(function(index, el) {
+
+		el.split = new SplitText(el, { 
+			type: "lines,words,chars",
+			linesClass: "split-line"
+		});
+
+		if( $(el).hasClass('nx-itm-anim') ){
+			gsap.set(el.split.chars, {
+				opacity: .3,
+				x: "-7",
+			});
+		}
+		el.anim = gsap.to(el.split.chars, {
+			scrollTrigger: {
+				trigger: el,
+				start: "top 92%",
+				end: "top 60%",
+				markers: false,
+				scrub: 1,
+			},
+
+			x: "0",
+			y: "0",
+			opacity: 1,
+			duration: .7,
+			stagger: 0.2,
+		});
+
+	});
+}
+
+gsap.utils.toArray(' .left_view').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			start: "top 70%",
+			end: "top -5%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 0, scale: 1, x: "-300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});	
+gsap.utils.toArray(' .right_view').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			start: "top 70%",
+			end: "top -5%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 0, scale: 1, xPercent: 100}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .top_view').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			start: "top 95%",
+			end: "top 100%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 0, scale: 1, y: "50"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .top_view_2').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			start: "top 150%",
+			end: "top 100%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 0, scale: 1, yPercent: "200"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .cnt_img_anim').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			start: "top 110%",
+			end: "top 100%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 0, scale: 1, yPercent: "100"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
+var NXABOUT = gsap.timeline({
+	scrollTrigger: {
+		trigger: '.nx-ab1-content',
+		start: "top 60%",
+		toggleActions: 'play none none reverse',
+		markers: false,
+	}
+
+});
+NXABOUT
+.from(".ab-line-shape1 span:nth-child(1)", { opacity: 0,  yPercent: -200, duration: 2,   ease: "power1.out" })
+.from(".ab-line-shape1 span:nth-child(2)", { opacity: 0,  yPercent: -200, duration: 2,   ease: "power1.out" },"<=.5")
+
+gsap.utils.toArray('.nx-count-item1 ').forEach((el, index) => {
+	let tl1 = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1,
+			start: "top 90%",
+			end: "buttom 50%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tl1
+	.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "top" })
+	.from(el , { scaleY: .2, rotateX: "15deg", opacity: 0})
+})
+
+
+gsap.utils.toArray('.nx-count-item2 ').forEach((el, index) => {
+	let tl1 = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1,
+			start: "top 90%",
+			end: "buttom 50%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tl1
+	.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "100% 50%" })
+	.from(el , { scaleX: .2  , opacity: 0})
+})
+gsap.utils.toArray('.nx-count-item3 ').forEach((el, index) => {
+	let tl1 = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1,
+			start: "top 90%",
+			end: "buttom 50%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tl1
+	.set(el, { perspective: 8000 , transformStyle: "preserve-3d" , transformOrigin: "left" })
+	.from(el , { scaleX: .2  , opacity: 0})
+})
+
+$('.zoom-gallery').magnificPopup({
+	delegate: 'a',
+	type: 'image',
+	closeOnContentClick: false,
+	preloader: true,
+	closeBtnInside: false,
+	mainClass: 'mfp-with-zoom',
+	gallery: {
+		enabled: true
+	},
+	zoom: {
+		enabled: false,
+		duration: 300, 
+		opener: function(element) {
+			return element.find('img');
+		}
+	}
+});
+if ($('.nx-pro2-slider').length > 0 ) {
+	var swiper2 = new Swiper(".nx-pro2-slider", {
 		loop: true,
 		spaceBetween: 0,
 		speed: 1000,
 		slidesPerView: 1,
-		effect: "fade",
-		pagination: {
-			el: ".nx-hr2-pagi",
-			clickable: true,
+		effect: "creative",
+		creativeEffect: {
+			prev: {
+				shadow: true,
+				translate: [0, 0, -800],
+				rotate: [180, 0, 0],
+			},
+			next: {
+				shadow: true,
+				translate: [0, 0, -800],
+				rotate: [-180, 0, 0],
+			},
 		},
 		navigation: {
-			prevEl: ".nx-hr2-prev",
-			nextEl: ".nx-hr2-next",
-		},
-		thumbs: {
-			swiper: quick_view,
+			prevEl: ".nx-pro2-prev",
+			nextEl: ".nx-pro2-next",
 		},
 	});
-	var quick_view = new Swiper(".nx-hero2-thumb-slider", {
-		loop: true,
-		spaceBetween: 0,
-		slidesPerView: 3,
-		speed: 1000,
-		centeredSlides: true,
-		pagination: {
-			el: ".nx-hr2-pagi",
-			clickable: true,
-		},
-		navigation: {
-			prevEl: ".nx-hr2-prev",
-			nextEl: ".nx-hr2-next",
-		},
+};
 
-		breakpoints: {  
-			'1400': {
-				slidesPerView: 3,
-			},
-			'1200': {
-				slidesPerView: 3,
-			},
-			'1024': {
-				slidesPerView: 3,
-			},
-		},
+
+gsap.utils.toArray(' .item_left_view').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top 30%",
+			start: "top 100%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 1,  xPercent: "100"}, {opacity: 1, xPercent: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .item_right_view').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top 30%",
+			start: "top 100%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 1,  xPercent: "-100"}, {opacity: 1, xPercent: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .from_top').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top 0%",
+			start: "top 50%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 1,  yPercent: "-100"}, {opacity: 1, xPercent: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .nx-pro2-content').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top 70%",
+			start: "top 120%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'center center'})
+	.from(el, { opacity: 1, yPercent: 50, rotateX: "30deg" , scale: .8})
+});
+gsap.utils.toArray(' .nx-team2-item').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top 50%",
+			start: "top 80%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: '50% 0%'})
+	.from(el, { opacity: 1,  scaleX: 0})
+});
+const boxes = gsap.utils.toArray('.txt_item_active');
+boxes.forEach(svg => {
+	gsap.to(svg, {
+		scrollTrigger: {
+			trigger: svg,
+			start: "top 100%",
+			end: "bottom bottom",
+			toggleClass: "active",
+			duration: 3,
+			delay:1,
+			toggleActions: "play play play reverse",
+			once: true,
+		}
 	});
+});
+var CTAFooter = gsap.timeline({
+	scrollTrigger: {
+		trigger: ".nx-footer2-cta",
+		start: "top 70%",
+		toggleActions: "play none none reverse",
+		markers: false,
+	},
+	defaults: {
+		duration: 1,
+	},
+})
+
+CTAFooter
+.from(".nx-ftr2-cta-item", {
+	yPercent: -150,
+	stagger: .25,
+})
+
+
+
+
+
+
 })(jQuery);

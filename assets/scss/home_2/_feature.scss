@@ -1,6 +1,25 @@
 .nx-feat2-sec {
 	background: linear-gradient(180deg, rgba(242, 243, 245, 0) 0%, rgba(242, 243, 245, 0.497057) 40%, #F2F3F5 100%);
 }
+@keyframes spinAround {
+	0% {
+		transform: rotateY(0deg);
+	}
+
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 .nx-feat2-item {
 	padding: 48px;
 	margin-bottom: 30px;
@@ -34,6 +53,22 @@
 			background-color: var(--nx-base1);
 		}
 	}
+	&:is(.ver_2) {
+		padding: 40px;
+		background-color: #F9FAFA;
+		h3 {
+			font-size: 20px;
+		}
+	}
+	&:is(.middile-item) {
+		z-index: 2;
+		position: relative;
+	}
+	&:hover {
+		.item-icon {
+			animation: 2.5s spinAround infinite;
+		}
+	}
 }
 .nx-feat2-sponsor {
 	h3 {
@@ -46,16 +81,19 @@
 	height: 30px;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	.line_1 {
-		width: 50%;
+		width: 0%;
 		height: 1px;
 		margin-right: 10px;
+		transition: all 1500ms ease-in-out;
 		background: linear-gradient(-90deg, #B0B0B2 0%, rgba(176, 176, 178, 0) 100%);
 	}
 	.line_2 {
-		width: 50%;
+		width: 0%;
 		height: 1px;
 		margin-left: 10px;
+		transition: all 1500ms ease-in-out;
 		background: linear-gradient(90deg, #B0B0B2 0%, rgba(176, 176, 178, 0) 100%);
 	}
 	.ft_ic1,
@@ -63,12 +101,21 @@
 		width: 14px;
 		height: 13px;
 		background-color: #B0B0B2;
+		animation: 2.5s spin infinite;
 		clip-path: polygon( 50.008% 3.571%,61.234% 38.121%,97.561% 38.121%,68.172% 59.473%,79.397% 94.022%,50.008% 72.67%,20.619% 94.022%,31.845% 59.473%,2.455% 38.121%,38.783% 38.121%,50.008% 3.571% );
 	}
 	.ft_ic2 {
 		width: 30px;
 		height: 30px;
 		background-color: #B0B0B2;
+		animation: 3.5s spin infinite;
 		clip-path: polygon( 50% 0%,50.739% 1.996%,50.739% 1.996%,53.44% 8.422%,56.664% 14.543%,60.383% 20.331%,64.57% 25.76%,69.198% 30.802%,74.24% 35.43%,79.669% 39.617%,85.458% 43.336%,91.578% 46.56%,98.004% 49.261%,100% 50%,98.004% 50.739%,98.004% 50.739%,91.578% 53.44%,85.458% 56.664%,79.669% 60.383%,74.24% 64.57%,69.198% 69.198%,64.57% 74.24%,60.383% 79.669%,56.664% 85.458%,53.44% 91.578%,50.739% 98.004%,50% 100%,49.261% 98.004%,49.261% 98.004%,46.56% 91.578%,43.336% 85.458%,39.617% 79.669%,35.43% 74.24%,30.802% 69.198%,25.76% 64.57%,20.331% 60.383%,14.543% 56.664%,8.422% 53.44%,1.996% 50.739%,0% 50%,1.996% 49.261%,1.996% 49.261%,8.422% 46.56%,14.543% 43.336%,20.331% 39.617%,25.76% 35.43%,30.802% 30.802%,35.43% 25.76%,39.617% 20.331%,43.336% 14.543%,46.56% 8.422%,49.261% 1.996%,50% 0% );
+	}
+	&:is(.active) {
+		.line_1,
+		.line_2 {
+			width: 50%;
+			transition-delay: 1200ms;
+		}
 	}
 }
