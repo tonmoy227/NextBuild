@@ -1,0 +1,37 @@
+.nx-pro3-item {
+	margin: 0 auto;
+	max-width: 624px;
+	margin-bottom: 48px;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #58595C1A;
+	&:is(.ver_2) {
+		max-width: 100%;
+	}
+	.item-img {
+		@media #{$sm,$xs,$xxs} {
+			height: 350px;
+		}
+	}
+	.item-text {
+		.pro_title {
+			font-size: 24px;
+			font-weight: 600;
+			padding-bottom: 16px;
+			&:hover {
+				color: var(--nx-base1);
+			}
+		}
+		.item-tag {
+			a {
+				font-size: 16px;
+				padding: 8px 16px;
+				border-radius: 50px;
+				margin-right: 10px;
+				border: 1px solid #2E30331A;
+				&:hover {
+					border: 1px solid var(--nx-base1)
+				}
+			}
+		}
+	}
+}

@@ -298,6 +298,10 @@ Last change:    00/00/00
 						el: ".nx-hr2-pagi",
 						clickable: true,
 					},
+					autoplay: {
+						enabled: true,
+						delay: 6000
+					},
 					navigation: {
 						prevEl: ".nx-hr2-prev",
 						nextEl: ".nx-hr2-next",
@@ -315,6 +319,10 @@ Last change:    00/00/00
 					pagination: {
 						el: ".nx-hr2-pagi",
 						clickable: true,
+					},
+					autoplay: {
+						enabled: true,
+						delay: 6000
 					},
 					navigation: {
 						prevEl: ".nx-hr2-prev",
@@ -894,5 +902,47 @@ if($('.dial').length){
 	},{accY: 0});
 }
 
+
+$('.nx-hover-item').each(function() {
+	var $group = $(this).parent();
+	$group.find('.nx-hover-item').mouseover(function() {
+		$group.find('.nx-hover-item').removeClass('active');
+		$(this).addClass('active');
+	});
+});
+
+
+gsap.utils.toArray(' .slide_view_1').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top -80%",
+			start: "top 0%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'top'})
+	.from(el, { opacity: 1, scale: 1,  y: "-=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
+gsap.utils.toArray(' .slide_view_2').forEach((el, index) => { 
+	let tlcta = gsap.timeline({
+		scrollTrigger: {
+			trigger: el,
+			scrub: 1.5,
+			end: "top -100%",
+			start: "top 200%",
+			toggleActions: "play none none reverse",
+			markers: false
+		}
+	})
+
+	tlcta
+	.set(el, {transformOrigin: 'bottom bottom'})
+	.from(el, { opacity: 1, scale: 1, y: "+=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+});
 
 })(jQuery);

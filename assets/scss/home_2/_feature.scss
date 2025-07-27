@@ -76,7 +76,7 @@
 				transform: rotate(-45deg);
 			}
 			&:hover {
-				gap: 16px;
+				gap: 10px;
 				background-color: transparent;
 				span {
 					opacity: 1;
@@ -199,7 +199,7 @@
 		.line_1,
 		.line_2 {
 			width: 50%;
-			transition-delay: 1200ms;
+			transition-delay: 1000ms;
 		}
 	}
 }
