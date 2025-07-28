@@ -59,6 +59,14 @@
 	}
 	&:is(.nx-hw-type2) {
 		background-color: var(--nx-base1);
+		.item-serial {
+			color: #fff;
+		}
+		.item-text {
+			h3, p {
+				color: #fff;
+			}
+		}
 	}
 	&:is(.nx-hw-type3) {
 		background-color: var(--nx-title-color);

@@ -1,3 +1,31 @@
+@keyframes slideup {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+	100% {
+		-webkit-transform: translateY(100%);
+		transform: translateY(100%);
+	}
+}
+@keyframes slidedown {
+	0% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+	100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+}
+.txt_item_up {
+	justify-content: flex-end;
+	animation: slideup 20s linear infinite;
+}
+.txt_item_down {
+	animation: slidedown 20s linear infinite;
+	justify-content: flex-start;
+}
 .nx-testi3-sec {
 	.nx-sec-title1 {
 		margin: 0 auto;
@@ -58,8 +86,9 @@
 	.item-author {
 		gap: 20px;
 		.inner-img {
-			width: 60px;
+			width: 60px; 
 			height: 60px;
+			overflow: hidden;
 			border-radius: 100%;
 			background-color: #F9FAFA;
 		}

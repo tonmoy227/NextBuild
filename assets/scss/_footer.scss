@@ -1,6 +1,13 @@
 .nx-footer-sec {
 	z-index: 1;
 	background-color: var(--nx-title-color);
+	.nx-ftr2-bg {
+		top: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+	}
 	&:before {
 		top: 0;
 		left: 0;
@@ -147,6 +154,7 @@
 		li {
 			margin-bottom: 15px;
 			a {
+				opacity: .8;
 				color: #F2F3F5;
 				&:hover {
 					color: var(--nx-base1);
