@@ -5,9 +5,13 @@
 	}
 }
 .nx-hero2-item {
+	max-height: 890px;
 	padding: 205px 0px;
 	@media #{$xl,$lg,$md,$sm,$xs,$xxs} {
 		padding: 150px 0px 115px;
+	}
+	@media #{$md,$sm,$xs,$xxs} {
+		max-height: 100%;
 	}
 	.nx-hero2-bg {
 		top: 0;
@@ -251,7 +255,7 @@
 }
 .nx-hero2-thumb {
 	right: 145px;
-	bottom: 80px;
+	bottom: 60px;
 	position: absolute;
 	@media #{$xxxl,$xxl} {
 		right: 30px;

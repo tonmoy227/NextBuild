@@ -341,8 +341,22 @@ Last change:    00/00/00
 						},
 					},
 				});
+
+
+				const NXH3 = gsap.timeline();
+				NXH3
+				.from(".nx-hero3-img .item-img", { yPercent: 100, scale: .1, duration: 1.2, transformOrigin: "bottom",  ease: "power1.out" })
+				.from(".nx-hero3-img .vertical_shape", { yPercent: 200, duration: 1.2, transformOrigin: "bottom",  ease: "power1.out" },"<=.5")
+				.from(".nx-hero3-client .nx-line-circle", { rotate: "360deg", opacity: 0, scale: .5, duration: 1.2, transformOrigin: "center center",  ease: "power1.out" },"<=.1")
+				.from(".nx-hero3-client .vertical_shape", { yPercent: 200, duration: 1.2, transformOrigin: "bottom",  ease: "power1.out" },"<=.1")
+				.from(".nx-hr3-client-text", { yPercent: 200, duration: 1.2, transformOrigin: "bottom",  ease: "power1.out" },"<=.1")
+				.from(".nx-hero3-text .nx-btn1", { yPercent: 200, opacity: 0, duration: .5, transformOrigin: "bottom",  ease: "power1.out" },"<=.5")
+				
+
+
+
 			}, 700);
-		})		
+})		
 });
 
 if (window.matchMedia("(min-width: 1200px)").matches) {
@@ -851,6 +865,46 @@ CTAFooter
 	stagger: .25,
 })
 
+var NXCOUNT = gsap.timeline({
+	scrollTrigger: {
+		trigger: ".nx-count-item",
+		start: "top 70%",
+		toggleActions: "play none none reverse",
+		markers: false,
+	},
+	defaults: {
+		duration: 1,
+	},
+})
+
+NXCOUNT
+.from(".nx-count-item .inner-text", {
+	yPercent: 150,
+	stagger: .2,
+})
+
+var WHLIST = gsap.timeline({
+	scrollTrigger: {
+		trigger: ".nx-wc3-content",
+		start: "top 70%",
+		toggleActions: "play none none reverse",
+		markers: false,
+	},
+	defaults: {
+		duration: 3,
+	},
+})
+
+WHLIST
+.from(".nx-wc3-tab-btn .nav-item", {
+	yPercent: 150,
+	opacity: 0,
+	stagger: .1,
+	ease: "elastic.out(1,0.7)",
+})
+
+
+
 
 if($('.count-box').length){
 	$('.count-box').appear_c(function(){
@@ -866,7 +920,7 @@ if($('.count-box').length){
 			}, {
 				duration: r,
 				easing: "linear",
-				step: function() {
+				step: function() { 
 					$t.find(".count-text").text(Math.floor(this.countNum));
 				},
 				complete: function() {
@@ -903,46 +957,68 @@ if($('.dial').length){
 }
 
 
-$('.nx-hover-item').each(function() {
-	var $group = $(this).parent();
-	$group.find('.nx-hover-item').mouseover(function() {
-		$group.find('.nx-hover-item').removeClass('active');
-		$(this).addClass('active');
+$('.nx-hover-item').on('mouseover', function () {
+	var $group = $(this).closest('[data-nx-group]');
+	$group.find('.nx-hover-item').removeClass('active');
+	$(this).addClass('active');
+});
+
+if (window.matchMedia("(min-width: 991px)").matches) { 
+	gsap.utils.toArray(' .slide_view_1').forEach((el, index) => { 
+		let tlcta = gsap.timeline({
+			scrollTrigger: {
+				trigger: el,
+				scrub: 1.5,
+				end: "top -80%",
+				start: "top 0%",
+				toggleActions: "play none none reverse",
+				markers: false
+			}
+		})
+
+		tlcta
+		.set(el, {transformOrigin: 'top'})
+		.from(el, { opacity: 1, scale: 1,  y: "-=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
 	});
-});
+};
 
+if (window.matchMedia("(min-width: 991px)").matches) { 
+	gsap.utils.toArray(' .slide_view_2').forEach((el, index) => { 
+		let tlcta = gsap.timeline({
+			scrollTrigger: {
+				trigger: el,
+				scrub: 1.5,
+				end: "top -100%",
+				start: "top 200%",
+				toggleActions: "play none none reverse",
+				markers: false
+			}
+		})
 
-gsap.utils.toArray(' .slide_view_1').forEach((el, index) => { 
-	let tlcta = gsap.timeline({
+		tlcta
+		.set(el, {transformOrigin: 'bottom bottom'})
+		.from(el, { opacity: 1, scale: 1, y: "+=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+	});
+};
+
+gsap.utils.toArray(".img-parallax").forEach(function(container) {
+	let image = container.querySelector("img");
+
+	let tl = gsap.timeline({
 		scrollTrigger: {
-			trigger: el,
-			scrub: 1.5,
-			end: "top -80%",
-			start: "top 0%",
-			toggleActions: "play none none reverse",
-			markers: false
-		}
-	})
+			trigger: container,
+			scrub: true,
+			pin: false,
 
-	tlcta
-	.set(el, {transformOrigin: 'top'})
-	.from(el, { opacity: 1, scale: 1,  y: "-=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
-});
-gsap.utils.toArray(' .slide_view_2').forEach((el, index) => { 
-	let tlcta = gsap.timeline({
-		scrollTrigger: {
-			trigger: el,
-			scrub: 1.5,
-			end: "top -100%",
-			start: "top 200%",
-			toggleActions: "play none none reverse",
-			markers: false
-		}
-	})
-
-	tlcta
-	.set(el, {transformOrigin: 'bottom bottom'})
-	.from(el, { opacity: 1, scale: 1, y: "+=300"}, {opacity: 1, y: 0, duration: 1, immediateRender: false})
+		},
+	}); 
+	tl.from(image, {
+		yPercent: -30,
+		ease: "none",
+	}).to(image, {
+		yPercent: 30,
+		ease: "none",
+	}); 
 });
 
 })(jQuery);
